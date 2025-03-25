@@ -36,6 +36,9 @@ class BlogResource extends Resource
                     ->required()
                     ->columnSpanFull(),
 
+                Forms\Components\FileUpload::make('banner_path')
+                    ->columnSpanFull(),
+
                 Forms\Components\MarkdownEditor::make('details')
                     ->required()
                     ->columnSpanFull()
@@ -70,7 +73,8 @@ class BlogResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array
