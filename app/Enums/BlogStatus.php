@@ -16,4 +16,9 @@ enum BlogStatus: string
             self::ARCHIVED => 'Archived'
         };
     }
+
+    public static function options(): array
+    {
+        return array_column(self::cases(), 'name', 'value');
+    }
 }

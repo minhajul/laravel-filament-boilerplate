@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\BlogStatus;
 use App\Filament\Resources\BlogResource\Pages;
 use App\Filament\Resources\BlogResource\RelationManagers;
 use App\Models\Blog;
@@ -26,11 +27,7 @@ class BlogResource extends Resource
                     ->columnSpanFull(),
 
                 Forms\Components\Select::make('status')
-                    ->options([
-                        'drafted' => 'Drafted',
-                        'published' => 'Published',
-                        'archived' => 'Archived',
-                    ])
+                    ->options(BlogStatus::options())
                     ->required()
                     ->columnSpanFull(),
 
