@@ -7,11 +7,10 @@ use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
 {
@@ -23,20 +22,30 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required(),
+                Forms\Components\TextInput::make('name')
+                    ->required(),
+
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required(),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('password_confirmation')
-                    ->password()
-                    ->required()
-                    ->maxLength(255)
-                    ->same('password')
-                    ->label('Confirm Password'),
+
+                Forms\Components\Section::make('Password')
+                    ->schema([
+                        Forms\Components\TextInput::make('password')
+                            ->password()
+                            ->maxLength(255)
+                            ->dehydrated(fn ($state) => filled($state))
+                            ->nullable()
+                            ->required(fn ($livewire) => $livewire instanceof CreateRecord),
+
+                        Forms\Components\TextInput::make('password_confirmation')
+                            ->password()
+                            ->maxLength(255)
+                            ->label('Confirm Password')
+                            ->same('password')
+                            ->nullable()
+                            ->required(fn ($livewire) => $livewire instanceof CreateRecord),
+                    ]),
             ]);
     }
 
@@ -46,8 +55,17 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+
+                Tables\Columns\TextColumn::make('email_verified_at')
+                    ->label('Verified At')
+                    ->getStateUsing(fn ($record) => $record->email_verified_at ? 'Verified' : 'Not Verified')
+                    ->badge()
+                    ->color(fn ($state) => $state === 'Verified' ? 'success' : 'warning'),
+
+                Tables\Columns\TextColumn::make('created_at'),
             ])
             ->filters([
                 //
@@ -83,7 +101,7 @@ class UserResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            UserResource\Widgets\UserOverview::class,
+
         ];
     }
 }
