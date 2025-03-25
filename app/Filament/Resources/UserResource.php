@@ -29,6 +29,9 @@ class UserResource extends Resource
                     ->email()
                     ->required(),
 
+                Forms\Components\Checkbox::make('is_admin')
+                    ->required(),
+
                 Forms\Components\Section::make('Password')
                     ->schema([
                         Forms\Components\TextInput::make('password')
@@ -58,6 +61,12 @@ class UserResource extends Resource
 
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+
+                Tables\Columns\TextColumn::make('is_admin')
+                    ->label('User Type')
+                    ->formatStateUsing(fn ($state) => $state ? 'Admin' : 'User')
+                    ->badge()
+                    ->color(fn ($state) => $state ? 'success' : 'gray'),
 
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->label('Verified At')
