@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\UserResource\Widgets;
 
 use App\Filament\Resources\UserResource\Pages\ListUsers;
+use App\Models\Blog;
+use App\Models\User;
 use Filament\Widgets\Concerns\InteractsWithPageTable;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -19,15 +21,15 @@ class UserOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Unique views', '192.1k')
-                ->description('32k increase')
-                ->descriptionIcon('heroicon-m-arrow-trending-up')
+            Stat::make('Total Users', User::count())
+                ->description('Total users in system')
+                ->descriptionIcon('heroicon-o-users')
                 ->color('success'),
 
-            Stat::make('Bounce rate', '21%')
-                ->description('7% decrease')
-                ->descriptionIcon('heroicon-m-arrow-trending-down')
-                ->color('danger'),
+            Stat::make('Total Blogs', Blog::count())
+                ->description('Total blogs in system')
+                ->descriptionIcon('heroicon-o-clipboard-document-list')
+                ->color('success'),
 
             Stat::make('Average time on page', '3:12')
                 ->description('3% increase')
