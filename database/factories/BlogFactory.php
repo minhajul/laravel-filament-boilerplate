@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Enums\BlogStatus;
@@ -10,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<Blog>
  */
-class BlogFactory extends Factory
+final class BlogFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -22,7 +24,7 @@ class BlogFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'user_id' => User::factory(),
-            'status' => $this->faker->randomElement(array_map(fn($case) => $case->value, BlogStatus::cases())),
+            'status' => $this->faker->randomElement(array_map(fn ($case) => $case->value, BlogStatus::cases())),
             'details' => $this->faker->paragraph(20),
         ];
     }

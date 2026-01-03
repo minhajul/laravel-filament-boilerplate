@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Enums\BlogStatus;
 use App\Filament\Resources\BlogResource\Pages;
-use App\Filament\Resources\BlogResource\RelationManagers;
 use App\Models\Blog;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -12,7 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class BlogResource extends Resource
+final class BlogResource extends Resource
 {
     protected static ?string $model = Blog::class;
 
@@ -41,7 +42,7 @@ class BlogResource extends Resource
 
                 Forms\Components\MarkdownEditor::make('details')
                     ->required()
-                    ->columnSpanFull()
+                    ->columnSpanFull(),
             ]);
     }
 

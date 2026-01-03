@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+declare(strict_types=1);
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+namespace Tests\Feature;
 
 it('returns a successful response', function () {
     $this->get('/')
