@@ -31,7 +31,7 @@ test('email can be verified', function () {
 
     $this->actingAs($user)
         ->get($verificationUrl)
-        ->assertRedirect(route('dashboard', absolute: false).'?verified=1');
+        ->assertRedirect(route('profile', absolute: false).'?verified=1');
 
     Event::assertDispatched(Verified::class);
 
