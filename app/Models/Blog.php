@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
+/**
+ * @property-read string $short_details
+ */
 final class Blog extends Model
 {
     /** @use HasFactory<BlogFactory> */
@@ -30,6 +33,26 @@ final class Blog extends Model
     protected $appends = [
         'short_details',
     ];
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        self::creating(function ($table) {
+            $slug = Str::slug($table->title);
+
+            if (Blog::whereSlug($slug)->exists()) {
+                $original = $slug;
+                $count = 2;
+
+                while (Blog::whereSlug($slug)->exists()) {
+                    $slug = "$original-".$count++;
+                }
+            }
+
+            $table->slug = $slug;
+        });
+    }
 
     // Scopes
     public function scopePublished(Builder $builder): Builder
@@ -54,7 +77,7 @@ final class Blog extends Model
     }
 
     // Accessor
-    public function shortDetails(): Attribute
+    protected function shortDetails(): Attribute
     {
         return Attribute::make(
             get: fn (mixed $value, array $attributes) => Str::limit(strip_tags($attributes['details']), 200)
@@ -91,25 +114,5 @@ final class Blog extends Model
     public function markAsArchived(): void
     {
         $this->update(['status' => 'archived']);
-    }
-
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        self::creating(function ($table) {
-            $slug = Str::slug($table->title);
-
-            if (static::whereSlug($slug)->exists()) {
-                $original = $slug;
-                $count = 2;
-
-                while (static::whereSlug($slug)->exists()) {
-                    $slug = "$original-".$count++;
-                }
-            }
-
-            $table->slug = $slug;
-        });
     }
 }
