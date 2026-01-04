@@ -26,6 +26,11 @@ jobs:
           node-version: '22'
           cache: 'bun'
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
       - name: Install Node Dependencies
         run: bun install
 
@@ -45,4 +50,4 @@ jobs:
         run: bun run build
 
       - name: Run Tests
-        run: ./vendor/bin/phpunit
+        run: ./vendor/bin/pest
