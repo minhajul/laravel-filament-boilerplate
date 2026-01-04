@@ -27,7 +27,7 @@ Ensure you have the following installed on your system:
 2. **Install Dependencies**
    ```sh
    composer install
-   npm install  # or yarn install
+   bun install  # or yarn install
    ```
 
 3. **Configure Environment**

@@ -34,26 +34,6 @@ final class Blog extends Model
         'short_details',
     ];
 
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        self::creating(function ($table) {
-            $slug = Str::slug($table->title);
-
-            if (Blog::whereSlug($slug)->exists()) {
-                $original = $slug;
-                $count = 2;
-
-                while (Blog::whereSlug($slug)->exists()) {
-                    $slug = "$original-".$count++;
-                }
-            }
-
-            $table->slug = $slug;
-        });
-    }
-
     // Scopes
     public function scopePublished(Builder $builder): Builder
     {
@@ -74,14 +54,6 @@ final class Blog extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    // Accessor
-    protected function shortDetails(): Attribute
-    {
-        return Attribute::make(
-            get: fn (mixed $value, array $attributes) => Str::limit(strip_tags($attributes['details']), 200)
-        );
     }
 
     // Methods
@@ -114,5 +86,33 @@ final class Blog extends Model
     public function markAsArchived(): void
     {
         $this->update(['status' => 'archived']);
+    }
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        self::creating(function ($table) {
+            $slug = Str::slug($table->title);
+
+            if (Blog::whereSlug($slug)->exists()) {
+                $original = $slug;
+                $count = 2;
+
+                while (Blog::whereSlug($slug)->exists()) {
+                    $slug = "$original-".$count++;
+                }
+            }
+
+            $table->slug = $slug;
+        });
+    }
+
+    // Accessor
+    protected function shortDetails(): Attribute
+    {
+        return Attribute::make(
+            get: fn (mixed $value, array $attributes) => Str::limit(strip_tags($attributes['details']), 200)
+        );
     }
 }
