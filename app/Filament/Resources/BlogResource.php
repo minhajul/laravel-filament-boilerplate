@@ -9,9 +9,9 @@ use App\Filament\Resources\BlogResource\Pages;
 use App\Models\Blog;
 use BackedEnum;
 use Filament\Resources\Resource;
-use Filament\Schemas\Components;
 use Filament\Schemas\Schema;
-use Filament\Tables\Actions;
+use Filament\Forms\Components;
+use Filament\Actions;
 use Filament\Tables\Columns;
 use Filament\Tables\Table;
 
@@ -71,28 +71,24 @@ final class BlogResource extends Resource
                 Actions\DeleteAction::make(),
                 Actions\RestoreAction::make(),
             ])
-            ->bulkActions([
-                Actions\BulkActionGroup::make([
-                    Actions\DeleteBulkAction::make(),
-                    Actions\RestoreBulkAction::make(),
-                ]),
+            ->groupedBulkActions([
+                Actions\DeleteBulkAction::make(),
+                Actions\RestoreBulkAction::make(),
             ])
             ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListBlogs::route('/'),
+            'index'  => Pages\ListBlogs::route('/'),
             'create' => Pages\CreateBlog::route('/create'),
-            'edit' => Pages\EditBlog::route('/{record}/edit'),
+            'edit'   => Pages\EditBlog::route('/{record}/edit'),
         ];
     }
 }

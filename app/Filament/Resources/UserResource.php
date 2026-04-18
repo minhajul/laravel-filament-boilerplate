@@ -9,9 +9,10 @@ use App\Models\User;
 use BackedEnum;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Resource;
-use Filament\Schemas\Components;
+use Filament\Forms\Components;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Tables\Actions;
+use Filament\Actions;
 use Filament\Tables\Columns;
 use Filament\Tables\Table;
 
@@ -35,7 +36,7 @@ final class UserResource extends Resource
                 Components\Checkbox::make('is_admin')
                     ->required(),
 
-                Components\Section::make('Password')
+                Section::make('Password')
                     ->schema([
                         Components\TextInput::make('password')
                             ->password()
@@ -87,7 +88,7 @@ final class UserResource extends Resource
                 Actions\DeleteAction::make(),
                 Actions\RestoreAction::make(),
             ])
-            ->bulkActions([
+            ->groupedBulkActions([
                 Actions\BulkActionGroup::make([
                     Actions\DeleteBulkAction::make(),
                 ]),
