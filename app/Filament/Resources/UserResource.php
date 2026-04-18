@@ -83,7 +83,7 @@ final class UserResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 Actions\EditAction::make(),
                 Actions\DeleteAction::make(),
                 Actions\RestoreAction::make(),

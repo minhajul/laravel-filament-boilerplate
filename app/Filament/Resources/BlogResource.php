@@ -66,7 +66,7 @@ final class BlogResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+            ->recordActions([
                 Actions\EditAction::make(),
                 Actions\DeleteAction::make(),
                 Actions\RestoreAction::make(),
