@@ -6,43 +6,45 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
-use Filament\Forms;
-use Filament\Forms\Form;
+use BackedEnum;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Schemas\Components;
+use Filament\Schemas\Schema;
+use Filament\Tables\Actions;
+use Filament\Tables\Columns;
 use Filament\Tables\Table;
 
 final class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-user';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
+        return $schema
+            ->components([
+                Components\TextInput::make('name')
                     ->required(),
 
-                Forms\Components\TextInput::make('email')
+                Components\TextInput::make('email')
                     ->email()
                     ->required(),
 
-                Forms\Components\Checkbox::make('is_admin')
+                Components\Checkbox::make('is_admin')
                     ->required(),
 
-                Forms\Components\Section::make('Password')
+                Components\Section::make('Password')
                     ->schema([
-                        Forms\Components\TextInput::make('password')
+                        Components\TextInput::make('password')
                             ->password()
                             ->maxLength(255)
                             ->dehydrated(fn ($state) => filled($state))
                             ->nullable()
                             ->required(fn ($livewire) => $livewire instanceof CreateRecord),
 
-                        Forms\Components\TextInput::make('password_confirmation')
+                        Components\TextInput::make('password_confirmation')
                             ->password()
                             ->maxLength(255)
                             ->label('Confirm Password')
@@ -57,37 +59,37 @@ final class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Columns\TextColumn::make('name')
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('email')
+                Columns\TextColumn::make('email')
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('is_admin')
+                Columns\TextColumn::make('is_admin')
                     ->label('User Type')
                     ->formatStateUsing(fn ($state) => $state ? 'Admin' : 'User')
                     ->badge()
                     ->color(fn ($state) => $state ? 'success' : 'gray'),
 
-                Tables\Columns\TextColumn::make('email_verified_at')
+                Columns\TextColumn::make('email_verified_at')
                     ->label('Verified At')
                     ->getStateUsing(fn ($record) => $record->email_verified_at ? 'Verified' : 'Not Verified')
                     ->badge()
                     ->color(fn ($state) => $state === 'Verified' ? 'success' : 'warning'),
 
-                Tables\Columns\TextColumn::make('created_at'),
+                Columns\TextColumn::make('created_at'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\RestoreAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
+                Actions\RestoreAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

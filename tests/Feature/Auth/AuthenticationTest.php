@@ -43,6 +43,10 @@ test('users can logout', function () {
     $user = User::factory()->create();
 
     $this->actingAs($user)
+        ->withHeaders([
+            'Origin' => config('app.url'),
+            'Sec-Fetch-Site' => 'same-origin',
+        ])
         ->post('/logout')
         ->assertRedirect('/');
 

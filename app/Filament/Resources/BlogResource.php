@@ -7,40 +7,42 @@ namespace App\Filament\Resources;
 use App\Enums\BlogStatus;
 use App\Filament\Resources\BlogResource\Pages;
 use App\Models\Blog;
-use Filament\Forms;
-use Filament\Forms\Form;
+use BackedEnum;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Schemas\Components;
+use Filament\Schemas\Schema;
+use Filament\Tables\Actions;
+use Filament\Tables\Columns;
 use Filament\Tables\Table;
 
 final class BlogResource extends Resource
 {
     protected static ?string $model = Blog::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('title')
+        return $schema
+            ->components([
+                Components\TextInput::make('title')
                     ->required()
                     ->columnSpanFull(),
 
-                Forms\Components\Select::make('status')
+                Components\Select::make('status')
                     ->options(BlogStatus::options())
                     ->required()
                     ->columnSpanFull(),
 
-                Forms\Components\Select::make('user_id')
+                Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required()
                     ->columnSpanFull(),
 
-                Forms\Components\FileUpload::make('banner_path')
+                Components\FileUpload::make('banner_path')
                     ->columnSpanFull(),
 
-                Forms\Components\MarkdownEditor::make('details')
+                Components\MarkdownEditor::make('details')
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -50,29 +52,29 @@ final class BlogResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                Columns\TextColumn::make('title')
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('status')
+                Columns\TextColumn::make('status')
                     ->badge()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('user.name'),
+                Columns\TextColumn::make('user.name'),
 
-                Tables\Columns\TextColumn::make('created_at'),
+                Columns\TextColumn::make('created_at'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\RestoreAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
+                Actions\RestoreAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                    Tables\Actions\RestoreBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
+                    Actions\RestoreBulkAction::make(),
                 ]),
             ])
             ->defaultSort('created_at', 'desc');
