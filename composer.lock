@@ -1939,16 +1939,16 @@
         },
         {
             "name": "guzzlehttp/uri-template",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/uri-template.git",
-                "reference": "516c3bf2af176c532d5b59b3430292f7e9ecccb1"
+                "reference": "7a466ad606491eb6528c717482f7cca77f1851f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/uri-template/zipball/516c3bf2af176c532d5b59b3430292f7e9ecccb1",
-                "reference": "516c3bf2af176c532d5b59b3430292f7e9ecccb1",
+                "url": "https://api.github.com/repos/guzzle/uri-template/zipball/7a466ad606491eb6528c717482f7cca77f1851f3",
+                "reference": "7a466ad606491eb6528c717482f7cca77f1851f3",
                 "shasum": ""
             },
             "require": {
@@ -2005,7 +2005,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/uri-template/issues",
-                "source": "https://github.com/guzzle/uri-template/tree/v2.0.0"
+                "source": "https://github.com/guzzle/uri-template/tree/v2.0.1"
             },
             "funding": [
                 {
@@ -2021,7 +2021,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-20T13:40:43+00:00"
+            "time": "2026-08-24T17:13:02+00:00"
         },
         {
             "name": "kirschbaum-development/eloquent-power-joins",
@@ -2088,16 +2088,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v13.26.1",
+            "version": "v13.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "e4a1bc52ef551d52e60244bb004256d6861da7ab"
+                "reference": "f3fa8f3591fa2e8f0b7dedfffc3fc324d2aad31b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/e4a1bc52ef551d52e60244bb004256d6861da7ab",
-                "reference": "e4a1bc52ef551d52e60244bb004256d6861da7ab",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f3fa8f3591fa2e8f0b7dedfffc3fc324d2aad31b",
+                "reference": "f3fa8f3591fa2e8f0b7dedfffc3fc324d2aad31b",
                 "shasum": ""
             },
             "require": {
@@ -2219,7 +2219,7 @@
                 "phpstan/phpstan": "^2.0",
                 "phpunit/phpunit": "^11.5.50 || ^12.5.8 || ^13.0.3",
                 "predis/predis": "^2.3 || ^3.0",
-                "rector/rector": "^2.3",
+                "rector/rector": "2.6.3",
                 "resend/resend-php": "^1.0",
                 "symfony/cache": "^7.4.0 || ^8.0.0",
                 "symfony/http-client": "^7.4.0 || ^8.0.0",
@@ -2311,7 +2311,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2026-08-18T20:31:28+00:00"
+            "time": "2026-08-25T14:16:00+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -3238,16 +3238,16 @@
         },
         {
             "name": "livewire/flux",
-            "version": "v2.17.0",
+            "version": "v2.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/flux.git",
-                "reference": "a999138107f528ad91ccd40d9ae7282b7b329a22"
+                "reference": "aea8f22fff07add72cdc0c694332439ed88626a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/flux/zipball/a999138107f528ad91ccd40d9ae7282b7b329a22",
-                "reference": "a999138107f528ad91ccd40d9ae7282b7b329a22",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/aea8f22fff07add72cdc0c694332439ed88626a1",
+                "reference": "aea8f22fff07add72cdc0c694332439ed88626a1",
                 "shasum": ""
             },
             "require": {
@@ -3298,9 +3298,9 @@
             ],
             "support": {
                 "issues": "https://github.com/livewire/flux/issues",
-                "source": "https://github.com/livewire/flux/tree/v2.17.0"
+                "source": "https://github.com/livewire/flux/tree/v2.17.1"
             },
-            "time": "2026-08-18T14:16:09+00:00"
+            "time": "2026-08-24T12:03:34+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -8075,23 +8075,23 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v5.6.4",
+            "version": "v5.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "416df702837983f8d5ff48c9c3fee4f5f57b980b"
+                "reference": "301c07936b16d88628b126b01d082ba153cf4c40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/416df702837983f8d5ff48c9c3fee4f5f57b980b",
-                "reference": "416df702837983f8d5ff48c9c3fee4f5f57b980b",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/301c07936b16d88628b126b01d082ba153cf4c40",
+                "reference": "301c07936b16d88628b126b01d082ba153cf4c40",
                 "shasum": ""
             },
             "require": {
                 "ext-pcre": "*",
-                "graham-campbell/result-type": "^1.1.4",
+                "graham-campbell/result-type": "^1.2",
                 "php": "^7.2.5 || ^8.0",
-                "phpoption/phpoption": "^1.9.5",
+                "phpoption/phpoption": "^1.10",
                 "symfony/polyfill-ctype": "^1.26",
                 "symfony/polyfill-mbstring": "^1.26",
                 "symfony/polyfill-php80": "^1.26"
@@ -8135,7 +8135,7 @@
                     "homepage": "https://github.com/vlucas"
                 }
             ],
-            "description": "Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.",
+            "description": "Loads environment variables from `.env` to `$_ENV` and `$_SERVER` automagically, and optionally to `getenv()`.",
             "keywords": [
                 "dotenv",
                 "env",
@@ -8143,7 +8143,7 @@
             ],
             "support": {
                 "issues": "https://github.com/vlucas/phpdotenv/issues",
-                "source": "https://github.com/vlucas/phpdotenv/tree/v5.6.4"
+                "source": "https://github.com/vlucas/phpdotenv/tree/v5.7.0"
             },
             "funding": [
                 {
@@ -8155,7 +8155,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-06T19:11:50+00:00"
+            "time": "2026-08-24T18:07:49+00:00"
         },
         {
             "name": "voku/portable-ascii",
